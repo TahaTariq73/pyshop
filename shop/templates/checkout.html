@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block title %} Checkout {% endblock title %}
+
+{% block css %}
+{% endblock css %}
+
+{% block body %}
+<div class="flex px-6 md:px-12 py-1 mb-4 text-sm text-gray-700 bg-gray-100 border" role="alert">
+  {% if order_id == none %}
+  <div class="font-semibold" id="alert-text"> Please enter your information correctly. </div> 
+  {% else %}
+  <div class="font-semibold" id="alert-text"> Your order id is {{order_id}} </div>   
+  {% endif %}
+</div>
+
+<!-- drawer component -->
+<div id="drawer-example" class="fixed z-40 h-screen overflow-y-auto bg-white w-80" tabindex="-1" aria-labelledby="drawer-label" style="font-family: 'Baloo 2', cursive;">
+  <div class="bg-gray-900 py-0 mb-4 px-4 flex items-center justify-between">  
+    <h5 id="drawer-label" class="mb-4 text-base font-semibold text-gray-100 mt-4"> Order Summary </h5>
+    <button type="button" data-drawer-dismiss="drawer-example" aria-controls="drawer-example" class="text-gray-100 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 items-center">
+      <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+    </button>
+  </div>
+</div>
+
+<section class="w-full flex justify-center px-2 py-4 sm:px-0 relative">
+    <button type="button" class="absolute top-0 right-8 border text-black border-gray-900 mt-2 py-1 px-3 rounded-sm bg-gray-100
+    active:bg-gray-400 text-sm" style="font-family: 'Baloo 2', cursive;"  data-drawer-target="drawer-example" data-drawer-show="drawer-example" aria-controls="drawer-example"> Order Summary </button> <br> <br>
+
+    <form class="py-12 w-full px-4 sm:w-auto" action="#" id="checkout-form" method="POST" style="font-family: 'Baloo 2', cursive;">
+        {% csrf_token %}
+        <div class="relative z-0 mb-8 w-full group">
+            <input type="text" name="name" id="name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none" placeholder="" required />
+            <label for="name" class="absolute text-lg text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0]"> Name </label>
+        </div>
+
+        <div class="relative z-0 mb-8 w-full group">
+            <input type="email" name="email" id="email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none" placeholder="" required />
+            <label for="email" class="absolute text-lg text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0]"> Email </label>
+        </div>
+
+        <div class="relative z-0 mb-8 w-full group">
+          <input type="text" name="address" id="address" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none" placeholder="" required />
+          <label for="address" class="absolute text-lg text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0]"> Street Address </label>
+        </div>
+
+        <div class="grid md:grid-cols-2 md:gap-6">
+            <div class="relative z-0 mb-8 w-full group">
+                <input type="text" name="country" id="country" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none" placeholder="" required />
+                <label for="country" class="absolute text-lg text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0]"> Country </label>
+            </div>
+            
+            <div class="relative z-0 mb-8 w-full group">
+              <input type="text" name="city" id="city" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none" placeholder="" required />
+              <label for="city" class="absolute text-lg text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0]"> City </label>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 md:gap-6">
+          <div class="relative z-0 mb-8 w-full group">
+              <input type="number" name="postal-code" id="postal-code" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none" placeholder="" required />
+              <label for="postal-code" class="absolute text-lg text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0]"> Postal Code </label>
+          </div>
+          
+          <div class="relative z-0 mb-8 w-full group">
+            <input type="number" name="number" id="number" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none" placeholder="" required />
+            <label for="number" class="absolute text-lg text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0]"> Phone no </label>
+          </div>
+        </div>
+        
+        <hr> <br> <br>
+
+        <div class="relative z-0 mb-8 w-full group">
+          <input type="text" name="card-number" id="card-number" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none" placeholder="">
+          <label for="card-number" class="absolute text-lg text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0]"> Card Number </label>
+        </div>
+
+        <div class="grid md:grid-cols-2 md:gap-6">
+            <div class="relative z-0 mb-8 w-full group">
+                <input type="text" name="security-code" id="security-code" class="block py-3 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none" placeholder="">
+                <label for="security-code" class="absolute text-lg text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0]"> Security Code </label>
+            </div>
+            
+            <div class="relative z-0 mb-8 w-full group">
+              <input type="datetime-local" name="date" id="date" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none" placeholder="">
+              <label for="date" class="absolute text-lg text-gray-500 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0]"> Date </label>
+            </div>
+        </div>
+
+        <input type="hidden" name="items-json">
+        <button type="submit" class="w-full mt-2 px-6 py-2.5 bg-yellow-600 text-white font-medium text-xs leading-tight
+        uppercase rounded shadow-md hover:bg-yellow-500 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out"> Place Order </button>
+    </form>
+</section>
+<br>
+{% endblock body %}
+
+{% block footer %}
+<footer class="z-20 p-4 w-full border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:py-4 md:px-6 bg-gray-900" style="font-family: 'Baloo 2', cursive;">
+  <span class="text-sm text-gray-200 text-center"> © 2022 
+      <a href="/" class="hover:underline"> Pyshop </a>. All Rights Reserved.
+  </span>
+</footer>
+{% endblock footer %}
+
+{% block js %}
+<script>
+document.querySelector("input[name=items-json]").value = localStorage.getItem("cart");
+</script>
+{% load static %}
+<script src="{% static 'Scripts/checkout.js' %}"></script>
+{% endblock js %}

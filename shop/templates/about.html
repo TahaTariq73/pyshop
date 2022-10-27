@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block css %}
+{% endblock css %}
+
+{% block title %} About {% endblock title %}
+
+{% block body %}
+<section class="about-section px-6 py-12 md:px-12" style="font-family: 'Baloo 2', cursive;">
+    <h1 class="font-semibold text-2x1"> Why to 
+      <span class="bg-yellow-100 text-yellow-800 font-semibold mr-2 px-2.5 py-0.5 rounded"> choose us ? </span>
+    </h1> <br>    
+
+    <p class="text-sm mb-6"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo reiciendis nobis maiores repellendus asperiores dolores fuga necessitatibus, dignissimos cupiditate vel magni praesentium consequuntur facilis accusamus voluptatum aliquid eum, alias ex.
+    Perferendis voluptatem ipsam natus repellat odit aperiam, exercitationem quae debitis tenetur nesciunt cum excepturi! Optio minus saepe, mollitia dolorem fugiat beatae.
+    Porro asperiores odit consequatur molestias sint tenetur veniam dolore. </p>
+    
+    <p class="text-sm mb-6"> Veniam suscipit rerum quae repellendus aspernatur ut sint sapiente obcaecati nisi harum molestiae quaerat eum nam ipsam in rem perferendis adipisci tempore consequatur, deleniti impedit corrupti dignissimos porro nobis! Doloremque.
+    Explicabo, vitae magnam dolorem exercitationem aperiam nemo tenetur non delectus pariatur itaque error nostrum quod, expedita ad sit libero id fugiat ea? Recusandae fugiat nesciunt similique hic voluptatum harum nihil?
+    Necessitatibus laborum sequi, quis unde quasi repudiandae rem asperiores. </p>
+    
+    <p class="text-sm mb-6"> Distinctio voluptates culpa modi, consequatur repudiandae doloribus dolore! Earum vero omnis maiores, libero magni sed nulla. Optio molestias ex veritatis quod! </p>
+</section>
+{% endblock body %}
+
+{% block footer %}
+<footer class="fixed bottom-0 left-0 z-20 p-4 w-full border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:py-4 md:px-6 bg-gray-900" style="font-family: 'Baloo 2', cursive;">
+  <span class="text-sm text-gray-200 text-center"> © 2022 
+      <a href="/" class="hover:underline"> Pyshop </a>. All Rights Reserved.
+  </span>
+</footer>
+{% endblock footer %}
+
+{% block js %}
+<script>
+localStorage.setItem("search-text", "");
+</script>
+{% endblock js %}

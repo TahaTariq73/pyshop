@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block css %}
+{% endblock css %}
+
+{% block title %} Tracker {% endblock title %}
+
+{% block body %}
+
+<section class="tracker-form block w-full p-4 md:p-12 lg:flex lg:justify-center lg:items-center">
+    <div class="block p-6 rounded-lg shadow-lg bg-white w-80 md:w-96 border h-64"> <br>
+        <form action="/tracker/" method="POST">
+            {% csrf_token %}
+            <div class="form-group mb-6">
+                <input type="text" name="order-id" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0
+                focus:text-gray-700 focus:bg-white focus:border-yellow-600 focus:outline-none" id="exampleInput7" placeholder="Order Id">
+            </div>
+
+            <div class="form-group mb-6">
+                <input type="email" name="email" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0
+                focus:text-gray-700 focus:bg-white focus:border-yellow-600 focus:outline-none" id="exampleInput8" placeholder="Email address">
+            </div>
+
+            <button type="submit" class="w-full px-6 py-2.5 bg-yellow-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-500 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out"> Track your order </button>
+        </form>
+    </div> <br>
+
+    <ol class="border-l border-gray-300 ml-0 lg:ml-12" style="font-family: 'Baloo 2', cursive;">
+
+        {% for i in updates %}
+        <li>
+            <div class="flex flex-start items-center pt-2">
+                <div class="bg-gray-300 w-2 h-2 rounded-full -ml-1 mr-3"></div>
+                <p class="text-gray-500 text-sm"> {{i.timestamp}} </p>
+            </div>
+            <div class="mt-0.5 ml-4 mb-6">
+                <h4 class="text-gray-800 font-semibold text-xl mb-1.5">  Update {{forloop.counter}} </h4>
+                <p class="text-gray-500 mb-3 text-sm"> {{i.update_desc}} </p>
+            </div>
+        </li>
+        {% endfor %}
+
+        {% if updates|length == 0 %}
+        <li>
+            <div class="mt-0.5 ml-4 mb-6 pt-3">
+                <h4 class="text-gray-800 font-semibold text-xl mb-1.5"> No update here </h4>
+                <p class="text-gray-500 mb-3 text-sm"> We found no updates about your order. </p>
+            </div>
+        </li>
+        {% endif %}
+
+    </ol>
+</section> 
+<br> <br>
+{% endblock body %}
+
+{% block footer %}
+<footer class="fixed bottom-0 left-0 z-20 p-4 w-full border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:py-4 md:px-6  bg-gray-900">
+  <span class="text-sm text-gray-200 text-center"> © 2022 
+      <a href="/" class="hover:underline"> Pyshop </a>. All Rights Reserved.
+  </span>
+</footer>
+{% endblock footer %}
+
+{% block js %}
+<script>
+</script>
+{% endblock js %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block css %}
+{% endblock css %}
+
+{% block title %} Contact {% endblock title %}
+
+{% block body %}
+<div id="alert-box"></div>
+
+<section class="w-full flex justify-center items-center my-12">
+    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md w-80 md:w-96 border">
+    <form action="#" method="POST" id="contact-form">
+        {% csrf_token %}
+        <div class="form-group mb-6 mt-2">
+            <input type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0
+            focus:text-gray-700 focus:bg-white focus:border-yellow-600 focus:outline-none" name="name" placeholder="Name">
+        </div>
+        <div class="form-group mb-6">
+            <input type="email" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0
+            focus:text-gray-700 focus:bg-white focus:border-yellow-600 focus:outline-none" name="email" placeholder="Email address">
+        </div>
+        <div class="form-group mb-6">
+            <textarea class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0
+            focus:text-gray-700 focus:bg-white focus:border-yellow-600 focus:outline-none" name="message" rows="4" placeholder="Message"></textarea>
+        </div>
+        <button type="submit" class="w-full px-6 py-2.5 bg-yellow-600 text-white font-medium text-xs leading-tight
+        uppercase rounded shadow-md hover:bg-yellow-500 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out">Send</button>
+    </form>
+    </div>
+</section> <br>
+{% endblock body %}
+
+{% block footer %}
+<footer class="fixed bottom-0 left-0 z-20 p-4 w-full border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:py-4 md:px-6 bg-gray-900" style="font-family: 'Baloo 2', cursive;">
+  <span class="text-sm text-gray-200 text-center"> © 2022 
+      <a href="/" class="hover:underline"> Pyshop </a>. All Rights Reserved.
+  </span>
+</footer>
+{% endblock footer %}
+
+{% block js %}
+{% load static %}
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+  crossorigin="anonymous"></script>
+<script src="{% static 'Scripts/contact.js' %}"></script>
+
+<script>
+</script>
+{% endblock js %}

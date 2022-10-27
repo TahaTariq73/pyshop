@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'Styles/base.css' %}">
+
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'Images/logo-black.png' %}" type="image/x-icon">
+
+    {% block css %}
+    {% endblock css %}
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title> Pyshop - {% block title %} {% endblock title %} </title>
+</head>
+<body style="width: 100%;">
+    
+    <!-- main navbar -->
+    <nav class="border-gray-200 bg-gray-900">
+        <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 md:px-6 py-2.5">
+            <a href="/" class="flex items-center" style="font-family: 'Baloo 2', cursive;">
+                {% load static %}
+                <img src="{% static 'Images/logo.png' %}" class="mr-1 h-6 sm:h-9" alt="Flowbite Logo">
+                <span class="self-center text-lg font-semibold whitespace-nowrap text-gray-50"> Pyshop </span>
+            </a>
+            <div class="flex items-center border-b-[1px]">
+                <input type="text" class="block py-2 pl-2 w-full text-gray-50 bg-gray-900 focus:outline-none" placeholder="Search..." id="search-input">
+                <svg id="search-icon" class="w-5 h-5 text-gray-500 hover:text-gray-100" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+                </svg>
+            </div>
+    </nav>
+
+    <!-- secondary navbar -->
+    <nav class="bg-gray-50 dark:bg-gray-700" style="font-family: 'Baloo 2', cursive;">
+        <div class="py-1 px-4 mx-auto max-w-screen-xl md:px-6">
+            <div class="flex items-center justify-between">
+                <ul class="hidden flex-row mt-0 mr-6 space-x-8 text-sm font-medium md:flex">
+                    <li> <a href="/" class="text-gray-900 hover:underline" aria-current="page"> Home </a> </li>
+                    <li> <a href="/products/" class="text-gray-900 hover:underline"> Products </a> </li>
+                    <li> <a href="/about/" class="text-gray-900 hover:underline"> About us </a> </li>
+                    <li> <a href="/contact/" class="text-gray-900 hover:underline"> Contact us </a> </li>
+                </ul>
+                <div>
+                    <button data-popover-target="popover-bottom" data-popover-placement="bottom" type="button" class="text-gray-900 bg-yellow-600 hover:bg-yellow-500 focus:outline-none font-medium rounded-sm text-sm px-2 py-1 text-center items-center inline-flex"
+                    type="button"> Your Cart </button>
+                    <div data-popover id="popover-bottom" role="tooltip" class="inline-block absolute invisible z-40 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300">
+                        <div class="py-2 px-3 bg-gray-100 rounded-t-lg border-b border-gray-200">
+                            <h3 class="font-semibold text-gray-900"> Your cart items </h3>
+                        </div>
+                        <div class="py-2 px-3">
+                            <ul class="w-48 text-sm font-normal text-gray-900 bg-white" style="font-family: 'Baloo 2', cursive;" id="cart-items">
+                            </ul>
+                        </div>
+                        <div class="flex justify-between py-2 px-3 bg-gray-100 rounded-t-lg border-b border-gray-200">
+                            <button type="button" class="text-gray-900 bg-yellow-600 hover:bg-yellow-500 focus:outline-none font-medium rounded-sm text-sm px-2 py-1 text-center items-center inline-flex"
+                                type="button" id="clear-cart"> Clear Cart </button>
+                            <button type="button" class="text-gray-900 bg-yellow-600 hover:bg-yellow-500 focus:outline-none font-medium rounded-sm text-sm px-2 py-1 text-center items-center inline-flex"
+                                type="button" onclick="window.location = '/checkout/' "> Check Out </button>
+                        </div>
+                        <div data-popper-arrow></div>
+                    </div>
+                    <button type="button" class="text-gray-900 bg-yellow-600 hover:bg-yellow-500 focus:outline-none font-medium rounded-sm text-sm px-2 py-1 text-center items-center inline-flex"
+                    type="button" onclick="window.location = '/tracker/'"> Tracker </button>
+                </div>
+
+                <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="text-gray-900 bg-yellow-600 hover:bg-yellow-500 focus:outline-none font-medium rounded-sm text-sm px-2 py-1 text-center items-center inline-flex md:hidden"
+                type="button"> Menu 
+                    <svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg></button>
+                <div id="dropdown" class="hidden z-40 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700"
+                    data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 510px);">
+                    <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
+                        <li> <a href="/" class="block py-2 px-4 hover:bg-gray-100"> Home </a> </li>
+                        <li> <a href="/products/" class="block py-2 px-4 hover:bg-gray-100"> Products </a> </li>
+                        <li> <a href="/about/" class="block py-2 px-4 hover:bg-gray-100"> About us </a> </li>
+                        <li> <a href="/contact/" class="block py-2 px-4 hover:bg-gray-100"> Contact us </a> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    {% block body %}
+    {% endblock body %}
+
+    {% block footer %}
+    {% endblock footer %}
+</body>
+
+{% load static %}
+<script src="{% static 'Scripts/base.js' %}"></script>
+<script src="{% static 'Scripts/cart.js' %}"></script>
+{% block js %}
+{% endblock js %}
+<script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
+
+</html>
